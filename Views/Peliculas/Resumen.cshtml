@@ -1,0 +1,106 @@
+﻿
+@model Peliculas.DTOs.PeliculaDTO
+@using Microsoft.AspNetCore;
+ 
+
+<h1>Resumen</h1>
+
+<div class="container">
+
+    <div class="container px-4 py-5" id="custom-cards">
+        <div class="row  gx-0">
+                @{string actores="";}
+                @foreach (var act in @Model.Actores)
+                {
+                    actores +=act.Nombre+ " ; ";
+
+                }
+
+            <div class="card mb-3 shadow">
+                <div class="row g-0">
+                    <div class="col">
+                        <div class="card-body">
+                            <h2 class="card-title">@Model.Nombre</h2>
+                            
+                       
+                   
+                            <ul class="list-group list-group-flush resumen">
+                                <li class="list-group-item resumen"><strong>Género: </strong>@Model.Genero.Nombre</li>
+                                <li class="list-group-item resumen"><strong>Director: </strong>@Model.Director</li>
+                                <li class="list-group-item resumen"><strong>Elenco: </strong>@actores</li>
+                                <li class="list-group-item resumen"><strong>Pais de Origen: </strong>@Model.PaisOrigen</li>
+                                <p class="card-text">@Model.Resumen</p>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card-body">
+                         <img src="/img/@Model.PosterLink" class="card-img-top poster" alt="...">
+                        </div>
+                    </div>
+                    <div class="col">
+                    <iframe width="560" height="100%" src="@Model.TrailerLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="accordion mt-5" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <h4 class="card-title">Reviews</h4>
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body resumen">
+                        @foreach (var item in Model.Criticas)
+                        {
+                            <div class="card resumen">
+                                <div class="card-header">
+                                    <h5 class="card-title">@item.Autor</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">@item.Contenido</p>
+
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h4 class="card-title">Comentarios</h4>
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body resumen">
+                        @foreach (var item in Model.Comentarios)
+                        {
+                            <div class="card resumen">
+                                <div class="card-header">
+                                    <h5 class="card-title">@item.usuario</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                    <p class="card-text">@item.Contenido</p>
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <p class="card-text"><i class="fa-solid fa-thumbs-up"></i> @item.MeGustaCantidad Me gusta</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+                            <a asp-controller="Peliculas" asp-action="Index" class="btn btn-primary mt-5">Volver</a>
+    </div>
+    

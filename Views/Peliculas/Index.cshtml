@@ -1,0 +1,42 @@
+﻿@model List<Peliculas.DTOs.PeliculaDTO>
+@using Microsoft.AspNetCore;
+ 
+
+<h1>Estrenos</h1>
+
+<div class="container">
+
+    <div class="container px-4 py-5" id="custom-cards">
+        <div class="row  gx-0">
+        @foreach(var m in Model)
+        
+        {
+                string actores="";
+                @foreach (var act in m.Actores)
+                {
+                    actores +=act.Nombre+ " ; ";
+
+                }
+
+                <div class="col pelis">
+                    <div class="card shadow pelis" >
+                        <img src="/img/@m.PosterLink" class="card-img-top poster" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong> @m.Nombre</strong></h5>
+                            <p class="card-text">@m.Resumen</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Fecha de estreno: </strong>@m.FechaEstreno.ToShortDateString()</li>
+                            <li class="list-group-item"><strong>Género: </strong>@m.Genero.Nombre</li>
+                            <li class="list-group-item"><strong>Director: </strong>@m.Director</li>
+                            <li class="list-group-item"><strong>Elenco: </strong>@actores</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="~/resumen/@m.Id" class="btn btn-primary">Ver más</a>
+                            
+                        </div>
+                    </div>
+                </div>
+        }
+        </div>
+    </div>

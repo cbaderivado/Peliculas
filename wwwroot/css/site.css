@@ -1,0 +1,43 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.poster{
+    height:20rem !important;
+}
+.pelis{
+    width:18rem !important;    
+    
+}
+.col.pelis{
+    margin:0%;
+    padding:0%;
+}
+.list-group-item.resumen{
+    border-color:transparent !important;
+    border-width:0px !important;
+
+}
+.card.resumen{
+    width:100%;
+    margin-bottom:.25rem;
+}
+.accordion-body.resumen {
+    padding: 0%;
+    padding-top: .5rem;
+    padding-bottom: 1rem;
+}
